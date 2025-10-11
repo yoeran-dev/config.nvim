@@ -172,23 +172,6 @@ require('lazy').setup({
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
   --
-  -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-  --
-
-  -- Alternatively, use `config = function() ... end` for full control over the configuration.
-  -- If you prefer to call `setup` explicitly, use:
-  --    {
-  --        'lewis6991/gitsigns.nvim',
-  --        config = function()
-  --            require('gitsigns').setup({
-  --                -- Your gitsigns configuration here
-  --            })
-  --        end,
-  --    }
-  --
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`.
-  --
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -377,6 +360,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Shortcut for opening .zshrc file
+      vim.keymap.set('n', '<leader>st', ':e ~/.zshrc<CR>', { desc = '[S]earch through zshrc [T]erminal settings' })
     end,
   },
 
@@ -671,7 +657,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports', 'black' },
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         markdown = { 'pymarkdownlnt' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         -- You can use 'stop_after_first' to run the first available formatter from the list
@@ -877,18 +863,15 @@ require('lazy').setup({
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
 
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
+  -- require 'plugins.debug',
+  -- require 'plugins.indent_line',
+  -- require 'plugins.lint',
+  -- require 'plugins.autopairs',
+  require 'plugins.neo-tree',
+  require 'plugins.gitsigns',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
