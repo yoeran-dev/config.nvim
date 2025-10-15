@@ -252,7 +252,7 @@ require('lazy').setup({
     },
   },
 
-  -- NOTE: Plugins can specify dependencies.
+  -- NOTE: Plugins can specify dependencies.init
   --
   -- The dependencies are proper plugin specifications as well - anything
   -- you do for a plugin at the top level, you can do for a dependency.
@@ -360,9 +360,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
-
-      -- Shortcut for opening .zshrc file
-      vim.keymap.set('n', '<leader>st', ':e ~/.zshrc<CR>', { desc = '[S]earch through zshrc [T]erminal settings' })
     end,
   },
 
@@ -869,7 +866,7 @@ require('lazy').setup({
   -- require 'plugins.debug',
   -- require 'plugins.indent_line',
   -- require 'plugins.lint',
-  -- require 'plugins.autopairs',
+  require 'plugins.autopairs',
   require 'plugins.neo-tree',
   require 'plugins.gitsigns',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
